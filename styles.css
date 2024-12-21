@@ -1,0 +1,245 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('Screenshot 2024-12-19 234610.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-parent {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 8%;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-container input {
+    width: 95%;
+    height: 60px;
+    padding: 12px 10px;
+    font-size: 15px;
+    border-radius: 9px;
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #fff;
+    margin: -1% 2.5%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    box-shadow: inset 0 0 0 2px transparent;
+}
+
+.input-container input:hover {
+    box-shadow: inset 0 0 0 1px #000000;
+}
+
+.input-container label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: #aaa;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+    top: 15%;
+    left: 5%;
+    transform: translate(0, 0);
+    font-size: 12px;
+    color: #2865ff;
+}
+
+.input-container input:focus {
+    border-color: #ffffff;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2.5px #1278ff, inset 0 0 0 1px #000000;
+}
+
+.login-btn {
+    background-color: #066aff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 95%;
+    height: 40px;
+    margin-left: 2.5%;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #0044ff;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 17px;
+    cursor: pointer;
+    color: #000000;
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: #000;
+}
+
+.forget-link {
+    display: block;
+    text-align: center;
+    margin-top: 4%;
+    color: #4277ff;
+    text-decoration: none;
+    font-size: 90%;
+    font-weight: 600;
+}
+
+.btn {
+    background-color: #049643;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 15.5%;
+    height: 3%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    top: 82%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    font-size: 106%;
+}
+
+.forget-link:hover,
+.btn:hover {
+    text-decoration: underline;
+}
+
+.hr {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+@media (max-width: 780px) {
+    body {
+        background: url('WhatsApp Image 2024-12-21 at 20.19.58.png') no-repeat center center fixed;
+        background-size: 100% 100%; /* تجعل الخلفية تتناسب مع عرض وارتفاع الشاشة */
+        background-position: center;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    .form-parent {
+        width: 80%;
+        height: 65%;
+        max-width: none;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    
+    .input-container,
+    .password-container,
+    .forget-link {
+        display: none;
+    }
+    
+    .btn {
+        background-color: #e5e6eb;
+        color: rgb(0, 0, 0);
+        font-weight: 700;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 71%;
+        height: 4%;
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-decoration: none;
+        font-size: 40px;
+        margin-top: -20%;
+    }
+    
+    .login-btn {
+        background-color: #1e74e4;
+        color: white;
+        font-weight: 700;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 74%;
+        height: 5%;
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 47%;
+        transform: translateX(-50%);
+        text-decoration: none;
+        font-size: 40px;
+        top: 69%;
+        transition: background-color 0.3s ease;
+    }
+    
+}
+
+
+
+@media (max-width: 480px) {
+    body {
+        background: url('WhatsApp Image 2024-12-20 at 00.24.50.jpeg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .form-parent {
+        margin-top: 5%;
+        padding: 15px;
+    }
+
+    .input-container input {
+        font-size: 14px;
+    }
+
+    .login-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+
+    .btn {
+        width: 30%;
+        font-size: 18px;
+        height: 45px;
+    }
+}

